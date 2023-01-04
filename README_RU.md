@@ -279,24 +279,24 @@ Handling files by rules |██████████████████�
 
 File: example/index.html
 <title> too short(1). The minimum length should be 10 characters.
-This HTML have more than 2 <strong> tags
-This HTML without <meta property="og:url"> tag
-This HTML without <meta property="og:type"> tag
-This HTML without <meta property="og:site_name"> tag
-This HTML without <meta property="og:title"> tag
-This HTML without <meta property="og:description"> tag
-This HTML without <meta property="og:image"> tag
-This HTML without <meta property="og:image:width"> tag
-This HTML without <meta property="og:image:height"> tag
-This HTML without <meta property="twitter:card"> tag
-This HTML without <meta property="twitter:text:title"> tag
-This HTML without <meta property="twitter:description"> tag
-This HTML without <meta property="twitter:image:src"> tag
-This HTML without <meta property="twitter:url"> tag
+This page have more than 2 <strong> tags
+This page without <meta property="og:url"> tag
+This page without <meta property="og:type"> tag
+This page without <meta property="og:site_name"> tag
+This page without <meta property="og:title"> tag
+This page without <meta property="og:description"> tag
+This page without <meta property="og:image"> tag
+This page without <meta property="og:image:width"> tag
+This page without <meta property="og:image:height"> tag
+This page without <meta property="twitter:card"> tag
+This page without <meta property="twitter:text:title"> tag
+This page without <meta property="twitter:description"> tag
+This page without <meta property="twitter:image:src"> tag
+This page without <meta property="twitter:url"> tag
 Tag <h3>Title 3</h3> should be </h2>
-This HTML have more than one <h1> tag
+This page have more than one <h1> tag
 There are 1 <img> tag without alt attribute
-This HTML without <meta name="keywords"> tag
+This page without <meta name="keywords"> tag
 There are 1 <a> tag without rel attribute
 The canonical link without href attribute
 

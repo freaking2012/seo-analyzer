@@ -76,13 +76,10 @@ class Analyzer {
     this._logInfo('\n🚀  Report of errors');
 
     for (const item of result) {
-      this._logInfo(`\nFile: ${item.source.trim()}`);
+      this._logInfo(`\nURL: ${item.source.trim()}`);
       this._logError(`${item.report.join('\n')}`);
     }
-
-    this._logSuccess(
-      '\n-------- 🚀 Finished! --------\nThanks for using Seo Analyzer!\n'
-    );
+    this._logInfo('\n\n');
 
     return process.exit(1); // Stop process in terminal
   }

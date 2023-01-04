@@ -12,13 +12,21 @@ class SeoAnalyzer {
     this._logger = new Logger();
     this._input = new Input();
     this._output = new Output();
+    this._authCookie = {};
     this._nextServer = new NextServer();
     this._inputData = [];
     this._defaultRules = defaultRules;
     this._rules = [];
+    this._includeUrls = [];
     this._ignoreFolders = [];
     this._ignoreFiles = [];
     this._ignoreUrls = [];
+    return this;
+  }
+
+  // -------- Headers ---------- //
+  inputAuthCookie(authCookie) {
+    this._authCookie = authCookie;
     return this;
   }
 
@@ -30,6 +38,11 @@ class SeoAnalyzer {
 
   ignoreFolders(folders) {
     this._ignoreFolders = folders;
+    return this;
+  }
+
+  includeUrls(urls) {
+    this._includeUrls = urls;
     return this;
   }
 
@@ -69,7 +82,11 @@ class SeoAnalyzer {
   inputNextJs(sitemap='sitemap.xml', port = 3000) {
     if (!this._inputData) return this;
     this._logger.printTextToConsole('SEO Analyzer');
-    this._inputData = this._nextServer.inputSSR(port, this._ignoreUrls, sitemap);
+    if (this._ignoreUrls && this._ignoreUrls.length > 0 && this._includeUrls && this._includeUrls.length > 0) {
+      this._logger.error('\n\n❌ Either specify the includeUrls or ignoreUrls. DO NOT SPECIFY BOTH !!');
+      return this;
+    }
+    this._inputData = this._nextServer.inputSSR(port, this._ignoreUrls, this._includeUrls, sitemap, this._authCookie);
     return this;
   }
 
@@ -82,6 +99,7 @@ class SeoAnalyzer {
         this._logger.error(`\n\n❌  Rule "${func}" not found\n`, 1);
       }
     } else if (typeof func === 'function') {
+      
       this._rules.push({ rule: func, options });
     } else {
       this._logger.error('\n\n❌  Rule must be a function or a string\n', 1);
@@ -93,6 +111,8 @@ class SeoAnalyzer {
   outputConsole() {
     (async () => {
       const json = await this._output.object(await this._inputData, this._rules);
+      this._logger.info('\nList of rules being analyzed :-');
+      this._rules.forEach((rule, index) => this._logger.info(`${ (index+1) }. ${rule.options.desc}`));
       this._logger.result(json);
     })();
     return this;

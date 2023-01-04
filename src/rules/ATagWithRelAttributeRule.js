@@ -1,5 +1,6 @@
 function ATagWithRelAttributeRule(dom) {
   return new Promise(resolve => {
+    // resolve('Veryfing ATagWithRelAttributeRule...');
     let count = 0;
     const elements = dom.window.document.querySelectorAll('a');
     elements.forEach(element => {

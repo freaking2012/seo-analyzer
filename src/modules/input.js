@@ -87,8 +87,8 @@ class Input {
    * @param port
    * @param ignoreUrls
    */
-  async spa(port, ignoreUrls = [], sitemap) {
-    const listTexts = await this.scraper.run(port, ignoreUrls, sitemap);
+  async spa(port, ignoreUrls = [], includeUrls = [], sitemap, authCookie) {
+    const listTexts = await this.scraper.run(port, ignoreUrls, includeUrls, sitemap, authCookie);
     const htmlDoms = await this._getDom(listTexts);
     return htmlDoms;
   }
@@ -212,6 +212,7 @@ class Input {
     // NOTE: https://github.com/jsdom/jsdom/issues/2177#issuecomment-379212964
     const virtualConsole = new VirtualConsole();
     list.forEach(item => {
+      // console.log(('*****item.text: ' + item.text));
       let dom = new JSDOM(item.text, { virtualConsole });
       doms.push({ source: item.source, dom });
       proccess.increment();

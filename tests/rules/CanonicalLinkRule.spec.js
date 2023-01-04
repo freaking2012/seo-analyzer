@@ -9,9 +9,9 @@ const fakeDOM = (canonical = null) => ({
   }
 });
 
-test('if document not exists a canonical link, it should return "This HTML without <link rel="canonical" href="..."> link"', async t => {
+test('if document not exists a canonical link, it should return "This page without <link rel="canonical" href="..."> link"', async t => {
   const result = await canonicalLinkRule(fakeDOM());
-  t.is(result, 'This HTML without <link rel="canonical" href="..."> link');
+  t.is(result, 'This page without <link rel="canonical" href="..."> link');
 });
 
 test('if canonical link without href, it should return "The canonical link without href attribute"', async t => {
